@@ -1,6 +1,6 @@
 var fs = require('graceful-fs');
 
-const NAME = "haltes_de_lijn"
+const NAME = "data"
 const ZOOM = 14;
 
 function latlonToTilenumber(lat, lon)
