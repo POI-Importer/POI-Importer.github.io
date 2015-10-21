@@ -4,7 +4,11 @@
 var overpassapi = "http://overpass-api.de/api/interpreter?data=";
 var datasets = {
 	"Belgium": {
-		"http://raw.githubusercontent.com/sanderd17/sanderd17.github.io/master/haltes_de_lijn_dataset.json": "Haltes De Lijn",
+		"BE_dl":
+		{
+			"url": "http://raw.githubusercontent.com/sanderd17/sanderd17.github.io/master/haltes_de_lijn_dataset.json",
+			"name": "Haltes De Lijn",
+		}
 	},
 };
 var datasetSettings = {};
@@ -18,7 +22,7 @@ function loadDatasets()
 	{
 		for (var dataset in datasets[country])
 		{
-			htmlHelper.addDataset(country, datasets[country][dataset], dataset);
+			htmlHelper.addDataset(country, dataset);
 			var req = new XMLHttpRequest();
 			req.overrideMimeType("application/json");
 			req.onreadystatechange = function()
@@ -32,7 +36,7 @@ function loadDatasets()
 				if (el.checked)
 					toggleDataset(dataset, el);
 			}
-			req.open("GET", dataset, true);
+			req.open("GET", datasets[country][dataset].url, true);
 			req.send(null);
 		}
 	}

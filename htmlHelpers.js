@@ -2,9 +2,9 @@ var htmlHelper = (function()
 {
 	var wikiUrl = "http://wiki.openstreetmap.org/wiki/";
 
-	var addDataset = function (country, displayname, id)
+	var addDataset = function (country, id)
 	{
-
+		var displayname = datasets[country][id].name;
 		if (!document.getElementById(country + "Section"))
 		{
 			var settingsSection = document.getElementById("datasetSection");
