@@ -6,7 +6,7 @@ var datasets = {
 	"Belgium": {
 		"BE_dl":
 		{
-			"url": "http://raw.githubusercontent.com/sanderd17/sanderd17.github.io/master/haltes_de_lijn_dataset.json",
+			"url": "http://raw.githubusercontent.com/POI-Importer/Haltes-De-Lijn/master/haltes_de_lijn_dataset.json",
 			"name": "Haltes De Lijn",
 		}
 	},
