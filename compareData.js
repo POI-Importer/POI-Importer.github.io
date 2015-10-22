@@ -36,8 +36,8 @@ function compareData(tiles, osmData)
 				{
 					var tag = settings.tagmatch[t];
 					score += comparisonAlgorithms[tag.algorithm || "equality"](
-						point.properties[tag.datakey],
-						element.tags[tag.osmkey]) * (tag.importance || 1);
+						point.properties[tag.key],
+						element.tags[tag.key]) * (tag.importance || 1);
 				}
 				if (score > bestScore)
 				{

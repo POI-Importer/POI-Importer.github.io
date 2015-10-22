@@ -49,14 +49,14 @@ var htmlHelper = (function()
 			if (point.osmElement && point.osmElement.tags)
 				score = comparisonAlgorithms[tag.algorithm || "equality"](
 					point.properties[tag.datakey],
-					point.osmElement.tags[tag.osmkey]) * (tag.importance || 1);
+					point.osmElement.tags[tag.key]) * (tag.importance || 1);
 			var colour = hslToRgb(score / 3, 1, 0.8);
 			popupHtml += "<tr style='background-color:" + colour + ";'><td>";
 			popupHtml += "<b>" + tag.datakey + "</b></td><td> = </td><td> " + point.properties[tag.datakey];
 			popupHtml += "</td><td>";
-			popupHtml += "<b>" + tag.osmkey + "</b></td><td> = </td><td>";
-			if (point.osmElement && point.osmElement.tags && point.osmElement.tags[tag.osmkey])
-				popupHtml += point.osmElement.tags[tag.osmkey];
+			popupHtml += "<b>" + tag.key + "</b></td><td> = </td><td>";
+			if (point.osmElement && point.osmElement.tags && point.osmElement.tags[tag.key])
+				popupHtml += point.osmElement.tags[tag.key];
 			else
 				popupHtml += "N/A";
 
