@@ -57,6 +57,8 @@ function compareData(tiles, osmData)
 var comparisonAlgorithms = {
 	"equality": function(v1, v2)
 	{
+		if (!v1)
+			return 1;
 		if (v1 == v2)
 			return 1;
 		return 0;	
@@ -66,14 +68,16 @@ var comparisonAlgorithms = {
 	 */
 	"inList": function(v1, v2)
 	{
-		if (!v1 || !v2)
-			return false;
+		if (!v1)
+			return 1;
+		if (!v2)
+			return 0;
 		var l1 = v1.split(";");
 		var l2 = v2.split(";");
 		for (var i = 0; i < l1.length; i++)
 			if (l2.indexOf(l1[i]) == -1)
-				return false;
-		return true;
+				return 0;
+		return 1;
 	},
 	/**
 	 * Checks if two lists contain the same elements (not neccesarily the same order)
@@ -82,11 +86,19 @@ var comparisonAlgorithms = {
 	{
 		return comparisonAlgorithms.inList(v1, v2) && comparisonAlgorithms.inList(v2, v1);
 	},
+	"equalIgnoreCase": function(v1, v2)
+	{
+		if (!v1)
+			return 1;
+		if (!v2)
+			return 0;
+		return v1.toLowerCase() == v2.toLowerCase();
+	},
 	"presence": function(v1, v2)
 	{
-		if (v1 != null && v2 != null)
+		if (!v1)
 			return 1;
-		return 0;
+		return v2 ? 1 : 0;
 	},
 };
 
