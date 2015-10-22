@@ -100,7 +100,7 @@ var comparisonAlgorithms = {
 			return 1;
 		if (!v2)
 			return 0;
-		return v1.toLowerCase().indexOf(v2.toLowerCase()) != 0;
+		return v1.toLowerCase().indexOf(v2.toLowerCase()) != -1;
 	},
 	"presence": function(v1, v2)
 	{
