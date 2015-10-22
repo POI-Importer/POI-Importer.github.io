@@ -45,6 +45,8 @@ var htmlHelper = (function()
 		for (var t = 0; t < settings.tagmatch.length; t++)
 		{
 			var tag = settings.tagmatch[t];
+			if (!point.properties[tag.key])
+				continue;
 			var score = 0;
 			if (point.osmElement && point.osmElement.tags)
 				score = comparisonAlgorithms[tag.algorithm || "equality"](
