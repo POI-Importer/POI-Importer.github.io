@@ -30,30 +30,34 @@ function loadDatasets()
 	{
 		for (var dataset in datasets[country])
 		{
-			htmlHelper.addDataset(country, dataset);
-			var req = new XMLHttpRequest();
-			req.overrideMimeType("application/json");
-			req.onreadystatechange = function()
+			(function (country, dataset)
 			{
-				if (req.readyState != 4)
-					return;
-				var settings = JSON.parse(req.responseText);
-				settings.layer = new L.LayerGroup();
-				datasetSettings[dataset] = settings;
-				var el = document.getElementById(dataset + "Dataset");
-				if (el.checked)
-					toggleDataset(dataset, el);
-			}
-			req.open("GET", datasets[country][dataset].url, true);
-			try
-			{
-				req.send(null);
-			}
-			catch (e)
-			{
-				console.log(datasets[country][dataset].url);
-				console.log(e);
-			}
+				htmlHelper.addDataset(country, dataset);
+				var req = new XMLHttpRequest();
+				req.overrideMimeType("application/json");
+				req.onreadystatechange = function()
+				{
+					if (req.readyState != 4)
+						return;
+					var settings = JSON.parse(req.responseText);
+					settings.layer = new L.LayerGroup();
+					datasetSettings[dataset] = settings;
+					var el = document.getElementById(dataset + "Dataset");
+					if (el.checked)
+						toggleDataset(dataset, el);
+					console.log("loaded "+ dataset);
+				}
+				req.open("GET", datasets[country][dataset].url, true);
+				try
+				{
+					req.send(null);
+				}
+				catch (e)
+				{
+					console.log(datasets[country][dataset].url);
+					console.log(e);
+				}
+			})(country, dataset);
 		}
 	}
 }
