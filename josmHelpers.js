@@ -26,7 +26,7 @@ var josmHelper = (function()
 		for (var t = 0; t < settings.tagmatch.length; t++)
 		{
 			var tag = settings.tagmatch[t];
-			xml += "<tag k='" + escapeXML(tag.osmkey) + "' v='" + escapeXML(point.properties[tag.datakey]) + "'/>"
+			xml += "<tag k='" + escapeXML(tag.key) + "' v='" + escapeXML(point.properties[tag.key]) + "'/>"
 		}
 		xml += "</node>"
 		xml += "</osm>"
