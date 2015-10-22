@@ -3,11 +3,19 @@
 // GLOBAL VARIABLES
 var overpassapi = "http://overpass-api.de/api/interpreter?data=";
 var datasets = {
-	"Belgium": {
+	"Belgium":
+	{
 		"BE_dl":
 		{
 			"url": "http://raw.githubusercontent.com/POI-Importer/Haltes-De-Lijn/master/dataset.json",
 			"name": "Haltes De Lijn",
+		},
+	},
+	"Italy": {
+		"IT_fuel":
+		{
+			"url": "http://raw.githubusercontent.com/POI-Importer/italia-stazioni-di-servizo/master/dataset.json",
+			"name": "Stazioni di servizo",
 		}
 	},
 };
@@ -37,7 +45,15 @@ function loadDatasets()
 					toggleDataset(dataset, el);
 			}
 			req.open("GET", datasets[country][dataset].url, true);
-			req.send(null);
+			try
+			{
+				req.send(null);
+			}
+			catch (e)
+			{
+				console.log(datasets[country][dataset].url);
+				console.log(e);
+			}
 		}
 	}
 }
