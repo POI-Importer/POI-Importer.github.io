@@ -82,8 +82,6 @@ function loadData()
 			tiledData[datasetName] = {};
 		var settings = datasetSettings[datasetName];
 
-		if (!mapBounds.intersects([[settings.bbox.b,settings.bbox.l],[settings.bbox.t,settings.bbox.r]]))
-			continue;
 		if (!mapObj.hasLayer(settings.layer))
 			continue;
 
