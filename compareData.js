@@ -94,6 +94,14 @@ var comparisonAlgorithms = {
 			return 0;
 		return v1.toLowerCase() == v2.toLowerCase();
 	},
+	"substringIgnoreCase": function(v1, v2)
+	{
+		if (!v1)
+			return 1;
+		if (!v2)
+			return 0;
+		return v1.toLowerCase().indexOf(v2.toLowerCase()) != 0;
+	},
 	"presence": function(v1, v2)
 	{
 		if (!v1)
