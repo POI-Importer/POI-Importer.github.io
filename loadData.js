@@ -45,7 +45,6 @@ function loadDatasets()
 					var el = document.getElementById(dataset + "Dataset");
 					if (el.checked)
 						toggleDataset(dataset, el);
-					console.log("loaded "+ dataset);
 				}
 				req.open("GET", datasets[country][dataset].url, true);
 				try
