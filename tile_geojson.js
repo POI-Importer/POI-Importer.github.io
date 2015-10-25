@@ -1,9 +1,19 @@
 var fs = require('graceful-fs');
 var mkdir = require('mkdirp');
 var rmdir = require('rimraf');
+var commandLineArgs = require("command-line-args");
+ 
+var cli = commandLineArgs([
+    { name: "dataset", alias: "d", type: String },
+    { name: "reponame", alias: "r", type: String },
+]);
 
-var repo = "datasets/belgium-haltes-de-lijn/"
-var data = "haltes_de_lijn.json"
+var options = cli.parse();
+var repo = options.reponame;
+var data = options.dataset;
+
+if (repo.charAt(repo.length - 1) != "/")
+	repo += "/";
 
 var zoom = JSON.parse(fs.readFileSync(repo + "dataset.json", "utf8")).zoom;
 
