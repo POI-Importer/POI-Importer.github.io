@@ -23,13 +23,14 @@ function loadDatasets()
 					if (req.readyState != 4)
 						return;
 					var settings = JSON.parse(req.responseText);
+					settings.url = datasets[country][dataset].url;
 					settings.layer = new L.LayerGroup();
 					datasetSettings[dataset] = settings;
 					var el = document.getElementById(dataset + "Dataset");
 					if (el.checked)
 						toggleDataset(dataset, el);
 				}
-				req.open("GET", datasets[country][dataset].url, true);
+				req.open("GET", datasets[country][dataset].url + "dataset.json", true);
 				try
 				{
 					req.send(null);
@@ -93,7 +94,7 @@ function loadData()
 		var tileCoordinates = geoHelper.latlonToTilenumber(
 			mapCenter.lat,
 			mapCenter.lng,
-			settings.data.zoom);
+			settings.zoom);
 
 		// Load 9 tiles around the center
 		for (var x = tileCoordinates.x - 1; x <= tileCoordinates.x + 1; x++)
@@ -119,9 +120,9 @@ function loadData()
 							displayPoint(datasetName, tileName, p);
 						loadOverpass();
 					}
-					req.open("GET", source + "/" + tileName + ".json", true);
+					req.open("GET", source + tileName + ".json", true);
 					try { req.send(null); } catch (e) {}
-				})(datasetName, tileName, settings.data.source);
+				})(datasetName, tileName, settings.url + "data/");
 			}
 		}
 		loadOverpass();
@@ -153,14 +154,14 @@ function loadOverpass()
 		var tileCoordinates = geoHelper.latlonToTilenumber(
 			mapCenter.lat,
 			mapCenter.lng,
-			settings.data.zoom);
+			settings.zoom);
 
 		for (var x = tileCoordinates.x - 1; x <= tileCoordinates.x + 1; x++)
 		{
 			for (var y = tileCoordinates.y - 1; y <= tileCoordinates.y + 1; y++)
 			{
 				var tileName = x + "_" + y;
-				var tileBbox = geoHelper.tilenumberToBbox(x, y, settings.data.zoom);
+				var tileBbox = geoHelper.tilenumberToBbox(x, y, settings.zoom);
 				// add a margin to the bbox
 				geoHelper.padBbox(tileBbox, settings.dist);
 
