@@ -40,7 +40,11 @@ Most important is the `zoom` parameter. This is used to split the data in tiles,
 and determines how big the tiles are. Tiles that are too big will take long to load, if tiles don't have enough 
 data, users will have problems finding the POI. It is advised to have between 5 and 20 POI per tile.
 
-`TODO : update and document the tile splitter tool`
+When the data is ready, you can run the `tile_geojson` script as follows:
+
+`node tile_geojson -d path/to/file/exported/from/josm.json -r datasets/name-of-repo`
+
+This should normally create the different tiles under `datasets/name-of-repo/data/`
 
 When the tiles are split, you can add the other settings to the `dataset.json` file, and test them.
 
