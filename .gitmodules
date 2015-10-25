@@ -1,0 +1,6 @@
+[submodule "datasets/belgium-haltes-de-lijn"]
+	path = datasets/belgium-haltes-de-lijn
+	url = https://github.com/POI-Importer/belgium-haltes-de-lijn.git
+[submodule "datasets/Italia-stazioni-di-servizo"]
+	path = datasets/Italia-stazioni-di-servizo
+	url = https://github.com/POI-Importer/Italia-stazioni-di-servizo.git
