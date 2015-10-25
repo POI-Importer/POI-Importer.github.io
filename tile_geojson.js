@@ -1,18 +1,23 @@
 var fs = require('graceful-fs');
+var mkdir = require('mkdirp');
+var rmdir = require('rimraf');
 
-const NAME = "data"
-const ZOOM = 14;
+var repo = "datasets/belgium-haltes-de-lijn/"
+var data = "haltes_de_lijn.json"
 
+var zoom = JSON.parse(fs.readFileSync(repo + "dataset.json", "utf8")).zoom;
+
+// TODO import function from geoHelpers, so tile equality is guaranteed
 function latlonToTilenumber(lat, lon)
 {
-	var n = Math.pow(2, ZOOM);
+	var n = Math.pow(2, zoom);
 	lat_rad = lat * Math.PI / 180;
 	return {
 		"x": Math.floor(n * ((lon + 180) / 360)), 
 		"y": Math.floor(n * (1 - (Math.log(Math.tan(lat_rad) + 1/Math.cos(lat_rad)) / Math.PI)) / 2) }
 }
 
-var data = JSON.parse(fs.readFileSync(NAME + ".json", "utf8"));
+var data = JSON.parse(fs.readFileSync(data, "utf8"));
 var tiledData = {};
 
 for (var i = 0; i < data.features.length; i++)
@@ -27,7 +32,10 @@ for (var i = 0; i < data.features.length; i++)
 	tiledData[tileNum.x][tileNum.y].push(feature);
 }
 
-// TODO import function from geoHelpers, so tile equality is guaranteed
+// Make sure the dir is empty and exists afterwards
+rmdir.sync(repo + "data");
+mkdir.sync(repo + "data");
+
 var numTiles = 0;
 for (var x in tiledData)
 {
@@ -38,7 +46,7 @@ for (var x in tiledData)
 			"type": "FeatureCollection",
 			"features": tiledData[x][y]
 		}
-		var fileName = NAME + "/" + x + "_" + y + ".json";
+		var fileName = repo + "data/" + x + "_" + y + ".json";
 		fs.writeFile(fileName, JSON.stringify(objectToWrite, null, 4), function(err) {
 			if(err) {
 				return console.log(err);
