@@ -27,12 +27,12 @@ var datasets = {
 			"name": "Stazioni di servizo",
 		}
 	},
-/*	"Norway" :
+	"Norway" :
 	{
 		"NO_kg":
 		{
-			"url": "http://obtitus.github.io/barnehagefakta_osm_data/POI-Importer-data/dataset.json",
-			"name": "Barnehagefakta fra Utdanningsdirektoratet",
+			"url": "datasets/norge-barnehagefakta/",
+			"name": "Barnehagefakta",
 		}
-	}*/
+	}
 };
