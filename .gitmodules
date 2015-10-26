@@ -4,3 +4,6 @@
 [submodule "datasets/Italia-stazioni-di-servizo"]
 	path = datasets/Italia-stazioni-di-servizo
 	url = https://github.com/POI-Importer/Italia-stazioni-di-servizo.git
+[submodule "datasets/norge-barnehagefakta"]
+	path = datasets/norge-barnehagefakta
+	url = https://github.com/POI-Importer/norge-barnehagefakta.git
