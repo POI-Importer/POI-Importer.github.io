@@ -215,7 +215,12 @@ function displayPoint(datasetName, tileName, idx)
 	if (!point.marker)
 		point.marker = L.marker(point.coordinates, {icon: settings.greyIcon})
 			.addTo(settings.layer);
-
+	if (settings.id)
+	{
+		function popupOpen(dataset, feature) { return function () { loadComments(dataset, feature); }; }
+		point.marker.on("popupopen", popupOpen(datasetName, point.properties[settings.id]));
+		point.marker.on("popupclose", htmlHelper.clearComments);
+	}
 	if (point.score == undefined)
 		return; // only initial display
 
@@ -228,6 +233,25 @@ function displayPoint(datasetName, tileName, idx)
 	point.marker.setIcon(settings.icons[Math.floor(10 * point.score/point.maxScore)]);
 	point.marker.bindPopup(htmlHelper.getPopup(datasetName, tileName, idx), {"maxWidth": 900});
 }
+
+function loadComments(dataset, feature)
+{
+	console.log(dataset + " " + feature);
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function(){};
+	req.onreadystatechange = function()
+	{
+		if (req.readyState != 4)
+			return;
+		if (req.status != 200)
+			return;
+		htmlHelper.displayComments(JSON.parse(req.responseText));
+	}
+	req.open("POST", "http://sabas.land/POI-Backend-PHP/api.php", true);
+	req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	// TODO use the correct key to get comments
+	req.send("feature=test&comment=test&action=get_comments");
+};
 
 function loadIcons(settings)
 {

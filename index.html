@@ -11,8 +11,10 @@
 			#leftPane
 			{
 				width: 20%;
+				height: calc(100% - 15px);
 				position:absolute;
 				z-index: 1;
+				overflow: auto;
 			}
 			div.settingsHeader
 			{
@@ -32,6 +34,12 @@
 			div.settingsPane
 			{
 				background-color: #EEE;
+				border-width: 1px;
+				border-style: solid;
+				border-color: #FFF;
+			}
+			div.comment
+			{
 				border-width: 1px;
 				border-style: solid;
 				border-color: #FFF;
@@ -56,10 +64,19 @@
 			<input type="checkbox" onchange="changeSetting(this)" id="hideCompletePOISetting"/>
 			<label for="hideCompletePOISetting"> Hide complete POI</label><br/>
 		</div>
+
 		<div class="settingsHeader" onclick="htmlHelper.collapseSection('dataset')">
 			&nbsp;Datasets <div class="collapser" id="datasetCollapser"></div>
 		</div>
 		<div id="datasetSection" class="settingsPane"></div>
+
+		<div class="settingsHeader" onclick="htmlHelper.collapseSection('comments')">
+			&nbsp;Comments (TBD)<div class="collapser" id="commentsCollapser"></div>
+		</div>
+		<div id="commentsSection" class="settingsPane">
+			<div id="commentsContent"></div>
+		</div>
+
 	</div>
 
 	<div id="mapPane">
@@ -90,6 +107,7 @@
 		loadAppState();
 		htmlHelper.collapseSection("settings");
 		htmlHelper.collapseSection("dataset");
+		htmlHelper.collapseSection("comments");
 	</script>
 
 </body>

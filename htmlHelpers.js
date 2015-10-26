@@ -68,6 +68,28 @@ var htmlHelper = (function()
 		return popupHtml;
 	};
 
+	var displayComments = function(comments)
+	{
+		var div = document.getElementById("commentsContent");
+		for (var i = 0; i < comments.length; i++)
+		{
+			var time = new Date(+comments[i].timestamp * 1000);
+			var comment = div.appendChild(document.createElement("div"));
+			comment.setAttribute("class", "comment");
+			comment.appendChild(document.createElement("b"))
+				.appendChild(document.createTextNode(comments[i].username + " "));
+			comment.appendChild(document.createElement("small"))
+				.appendChild(document.createTextNode(time.toLocaleString()));
+			comment.appendChild(document.createElement("br"));
+			comment.appendChild(document.createTextNode(comments[i].comment));
+		}
+	};
+
+	var clearComments = function()
+	{
+		document.getElementById("commentsContent").innerHTML = "";
+	};
+
 	var collapseSection = function (id)
 	{
 		var section = document.getElementById(id + "Section");
@@ -90,5 +112,7 @@ var htmlHelper = (function()
 		"addDataset": addDataset,
 		"collapseSection": collapseSection,
 		"getPopup": getPopup,
+		"displayComments": displayComments,
+		"clearComments": clearComments,
 	};
 })();

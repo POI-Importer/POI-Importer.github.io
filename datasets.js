@@ -14,14 +14,14 @@
 var datasets = {
 	"Belgium":
 	{
-		"BE_dl":
+		"BEdl":
 		{
 			"url": "datasets/belgium-haltes-de-lijn/", 
 			"name": "Haltes De Lijn",
 		},
 	},
 	"Italy": {
-		"IT_fuel":
+		"ITfuel":
 		{
 			"url": "datasets/Italia-stazioni-di-servizo/",
 			"name": "Stazioni di servizo",
@@ -29,7 +29,7 @@ var datasets = {
 	},
 	"Norway" :
 	{
-		"NO_kg":
+		"NOkg":
 		{
 			"url": "datasets/norge-barnehagefakta/",
 			"name": "Barnehagefakta",
