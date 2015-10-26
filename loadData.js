@@ -6,6 +6,7 @@ var datasetSettings = {};
 var tiledData = {};
 var appSettings = {};
 var queryStatus = {"busy": false, "waiting": false};
+var loggedInToOsm = true; // TODO default to false
 
 function loadDatasets()
 {
@@ -236,7 +237,7 @@ function displayPoint(datasetName, tileName, idx)
 
 function loadComments(dataset, feature)
 {
-	console.log(dataset + " " + feature);
+	var key = encodeURIComponent(dataset + "_" + feature);
 	var req = new XMLHttpRequest();
 	req.onreadystatechange = function(){};
 	req.onreadystatechange = function()
@@ -245,12 +246,31 @@ function loadComments(dataset, feature)
 			return;
 		if (req.status != 200)
 			return;
-		htmlHelper.displayComments(JSON.parse(req.responseText));
+		htmlHelper.displayComments(JSON.parse(req.responseText), dataset, feature);
 	}
 	req.open("POST", "http://sabas.land/POI-Backend-PHP/api.php", true);
 	req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	// TODO use the correct key to get comments
-	req.send("feature=test&comment=test&action=get_comments");
+	req.send("action=get_comments&feature=" + key);
+};
+
+function addComment(dataset, feature)
+{
+	var key = encodeURIComponent(dataset + "_" + feature);
+	var comment = encodeURIComponent(document.getElementById("newCommentText").value);
+	var req = new XMLHttpRequest();
+	req.onreadystatechange = function(){};
+	req.onreadystatechange = function()
+	{
+		if (req.readyState != 4)
+			return;
+		if (req.status != 200)
+			return;
+		document.getElementById("newCommentText").value = "";
+		loadComments(dataset, feature); // reload comments to show own comment
+	}
+	req.open("POST", "http://sabas.land/POI-Backend-PHP/api.php", true);
+	req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	req.send("action=comment&status=open&feature=" + key + "&comment=" + comment);
 };
 
 function loadIcons(settings)
@@ -380,6 +400,15 @@ function getStateString()
 	if (activatedSettings.length > 0)
 		r += "&settings=" + activatedSettings.join(";");
 	return r;
+}
+
+function checkOsmLogin()
+{
+	// call API and check if user is logged in
+	if (!loggedInToOsm)
+		return;
+
+	document.getElementById("osmLogin").style.display = "none";
 }
 
 function applyStateString(state)

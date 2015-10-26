@@ -68,9 +68,10 @@ var htmlHelper = (function()
 		return popupHtml;
 	};
 
-	var displayComments = function(comments)
+	var displayComments = function(comments, dataset, feature)
 	{
 		var div = document.getElementById("commentsContent");
+		div.innerHTML = "";
 		for (var i = 0; i < comments.length; i++)
 		{
 			var time = new Date(+comments[i].timestamp * 1000);
@@ -83,11 +84,20 @@ var htmlHelper = (function()
 			comment.appendChild(document.createElement("br"));
 			comment.appendChild(document.createTextNode(comments[i].comment));
 		}
+		if (loggedInToOsm)
+		{
+			document.getElementById("newComment").style.display = "block";
+			document.getElementById("newCommentButton").onclick = function()
+			{
+				addComment(dataset, feature);
+			}
+		}
 	};
 
 	var clearComments = function()
 	{
-		document.getElementById("commentsContent").innerHTML = "";
+		document.getElementById("commentsContent").innerHTML = "Select a feature to see comments.";
+		document.getElementById("newComment").style.display = "none";
 	};
 
 	var collapseSection = function (id)

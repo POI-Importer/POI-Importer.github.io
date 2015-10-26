@@ -11,7 +11,7 @@
 			#leftPane
 			{
 				width: 20%;
-				height: calc(100% - 15px);
+				max-height: calc(100% - 15px);
 				position:absolute;
 				z-index: 1;
 				overflow: auto;
@@ -71,10 +71,17 @@
 		<div id="datasetSection" class="settingsPane"></div>
 
 		<div class="settingsHeader" onclick="htmlHelper.collapseSection('comments')">
-			&nbsp;Comments (TBD)<div class="collapser" id="commentsCollapser"></div>
+			&nbsp;Comments (experimental)<div class="collapser" id="commentsCollapser"></div>
 		</div>
 		<div id="commentsSection" class="settingsPane">
-			<div id="commentsContent"></div>
+			<div id="commentsContent">Select a feature to see comments.</div>
+			<div id="newComment" style="display:none;">
+				<textarea id="newCommentText" name="newComment" rows="5" style="width:100%;"></textarea>
+				<input type="button" id="newCommentButton" value="Add comment"></input>
+			</div>
+			<div id="osmLogin">
+				<input type="button" id="osmLoginButton" value="Login to OSM to add a comment"></input>
+			</div>
 		</div>
 
 	</div>
@@ -108,6 +115,7 @@
 		htmlHelper.collapseSection("settings");
 		htmlHelper.collapseSection("dataset");
 		htmlHelper.collapseSection("comments");
+		checkOsmLogin();
 	</script>
 
 </body>
