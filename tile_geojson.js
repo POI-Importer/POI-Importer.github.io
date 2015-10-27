@@ -12,6 +12,18 @@ var options = cli.parse();
 var repo = options.reponame;
 var data = options.dataset;
 
+if (!repo)
+{
+	console.log("ERROR: No --reponame provided.");
+	process.exit(1);
+}
+
+if (!data)
+{
+	console.log("ERROR: No --dataset provided.");
+	process.exit(1);
+}
+
 if (repo.charAt(repo.length - 1) != "/")
 	repo += "/";
 
