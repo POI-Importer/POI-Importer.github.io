@@ -145,13 +145,13 @@ function loadOverpass()
 	var mapCenter = mapObj.getCenter();
 	// Make query
 	var query = "[out:json];\n";
-	var types = ["node"/*,"way","rel"*/];
 	var queriedDatasets = [];
 	for (var datasetName in datasetSettings)
 	{
 		if (!tiledData[datasetName])
 			continue;
 		var settings = datasetSettings[datasetName];
+		var types = settings.types || ["node"];
 		var tileCoordinates = geoHelper.latlonToTilenumber(
 			mapCenter.lat,
 			mapCenter.lng,
