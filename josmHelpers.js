@@ -5,8 +5,22 @@ var josmHelper = (function()
 	{
 		var url = josmUrl + "load_and_zoom" + area;
 		var req = new XMLHttpRequest();
+		req.onreadystatechange = function()
+		{
+			if (req.readyState != 4)
+				return;
+			else if (req.status != 200)
+				testJosmVersion();
+		}
 		req.open("GET", url, true);
-		req.send(null);
+		try
+		{
+			req.send(null);
+		}
+		catch (e)
+		{
+			testJosmVersion();
+		}
 	};
 
 	var importPoint = function(datasetName, tileName, idx)
@@ -36,25 +50,47 @@ var josmHelper = (function()
 		var req = new XMLHttpRequest();
 		req.onreadystatechange = function()
 		{
-			if (req.readyState == 4 && req.status == 400)
-				// something went wrong. Alert the user with appropriate messages
+			if (req.readyState != 4)
+				return;
+			else if (req.status != 200)
 				testJosmVersion();
 		}
 		req.open("GET", url + encodeURIComponent(xml), true);
-		req.send(null);
+		try
+		{
+			req.send(null);
+		}
+		catch (e)
+		{
+			testJosmVersion();
+		}
 	};
 
 	var testJosmVersion = function() {
+		var defaultAlert = "Please make sure JOSM is running and the remoteControl plugin is enabled";
 		var req = new XMLHttpRequest();
-		req.open("GET", josmUrl + "version", true);
-		req.send(null);
 		req.onreadystatechange = function()
 		{
 			if (req.readyState != 4)
 				return;
-			var version = JSON.parse(req.responseText).protocolversion;
-			if (version.minor < 6)
-				alert("Your JOSM installation does not yet support load_data requests. Please update JOSM to version 7643 or newer");
+			console.log(req.status);
+			if (req.status == 0)
+				alert(defaultAlert);
+			else if (req.status == 200)
+			{
+				var version = JSON.parse(req.responseText).protocolversion;
+				if (version.minor < 6)
+					alert("Your JOSM installation does not yet support load_data requests. Please update JOSM to version 7643 or newer");
+			}
+		}
+		req.open("GET", josmUrl + "version", true);
+		try
+		{
+			req.send(null);
+		}
+		catch (e)
+		{
+			alert(defaultAlert);
 		}
 	};
 

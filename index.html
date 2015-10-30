@@ -52,6 +52,28 @@
 				border-style: solid;
 				border-color: #FFF;
 			}
+/*
+			TODO use this for warning users there are comments
+			@keyframes warning
+			{
+				0% {background-color:#CCC;}
+				100% {background-color:#F60;}
+			}
+ 
+			@keyframes still
+			{
+				0% {background-color: #CCC;}
+				100% {background-color: #CCC;}
+			}
+
+			#commentsHeader
+			{
+				animation-name: still;
+				animation-duration:2s;
+				animation-direction:alternate;
+				animation-iteration-count:infinite;
+			}
+*/
 		</style>
 	</head>
 	<body>
@@ -70,7 +92,7 @@
 		</div>
 		<div id="datasetSection" class="settingsPane"></div>
 
-		<div class="settingsHeader" onclick="htmlHelper.collapseSection('comments')">
+		<div class="settingsHeader" onclick="htmlHelper.collapseSection('comments')" id="commentsHeader">
 			&nbsp;Comments (experimental)<div class="collapser" id="commentsCollapser"></div>
 		</div>
 		<div id="commentsSection" class="settingsPane">
@@ -106,11 +128,10 @@
 		mapObj.on("zoomend", loadData);
 		mapObj.on("moveend", loadData);
 		L.tileLayer("http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
-            subdomains: "1234",
+			subdomains: "1234",
 			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
 			maxZoom: 18
-		})
-			.addTo(mapObj);
+		}).addTo(mapObj);
 		new L.Control.Zoom({ position: 'topright' }).addTo(mapObj);
 		loadAppState();
 		htmlHelper.collapseSection("settings");
