@@ -89,7 +89,7 @@ var htmlHelper = (function()
 			document.getElementById("newComment").style.display = "block";
 			document.getElementById("newCommentButton").onclick = function()
 			{
-				addComment(dataset, feature);
+				commentsHelper.addComment(dataset, feature);
 			}
 		}
 	};
