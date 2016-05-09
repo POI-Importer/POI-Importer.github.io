@@ -5,6 +5,7 @@ var overpassApi = "http://overpass-api.de/api/interpreter?data=";
 
 var datasetSettings = {};
 var tiledData = {};
+var oms = {}; // markers
 var appSettings = {};
 var queryStatus = {"busy": false, "waiting": false};
 var loggedInToOsm = true; // TODO default to false
@@ -220,8 +221,9 @@ function displayPoint(datasetName, tileName, idx)
 	if (settings.id)
 	{
 		function popupOpen(dataset, feature) { return function () { commentsHelper.loadComments(dataset, feature); }; }
-		point.marker.on("popupopen", popupOpen(datasetName, point.properties[settings.id]));
-		point.marker.on("popupclose", commentsHelper.clearComments);
+		//point.marker.on("popupopen", popupOpen(datasetName, point.properties[settings.id]));
+	        //point.marker.on("popupclose", commentsHelper.clearComments);
+	        oms.addMarker(point.marker);
 	}
 	if (point.score == undefined)
 		return; // only initial display
@@ -332,8 +334,16 @@ function saveAppState()
 	window.location.hash = stateString;
 }
 
-function loadAppState()
+function loadAppState(mapObj)
 {
+        oms = new OverlappingMarkerSpiderfier(mapObj, {"keepSpiderfied":true});
+        var popup = new L.Popup();
+        oms.addListener('click', function(marker) {
+	    popup.setContent(marker.desc);
+	    popup.setLatLng(marker.getLatLng());
+	    mapObj.openPopup(popup);
+	});
+
 	var stateString;
 	if (window.location.hash)
 		stateString = window.location.hash.slice(1);
