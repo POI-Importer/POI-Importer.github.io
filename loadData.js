@@ -24,8 +24,11 @@ function loadDatasets()
 				req.onreadystatechange = function()
 				{
 					if (req.readyState != 4)
-						return;
-					var settings = JSON.parse(req.responseText);
+					    return;
+				        var response = req.responseText
+				        if (response == '')
+					    return;
+					var settings = JSON.parse(response);
 					settings.url = datasets[country][dataset].url;
 					settings.layer = new L.LayerGroup();
 					datasetSettings[dataset] = settings;
@@ -112,19 +115,27 @@ function loadData()
 				(function(datasetName, tileName, source)
 				{
 					var req = new XMLHttpRequest();
-					req.overrideMimeType("application/json");
+				    req.overrideMimeType("application/json");
+				    // req.onerror = function(error)
+				    // {
+				    // 	console.log(error);
+				    // }
 					req.onreadystatechange = function()
 					{
 						if (req.readyState != 4)
-							return;
-						var data = geojsonToPointlist(JSON.parse(req.responseText));
+						    return;
+					        var response = req.responseText
+					        if (response == '')
+						    return;
+					    
+						var data = geojsonToPointlist(JSON.parse(response));
 						tiledData[datasetName][tileName].data = data;
 						for (var p = 0; p < data.length; p++)
 							displayPoint(datasetName, tileName, p);
 						loadOverpass();
 					}
 					req.open("GET", source + tileName + ".json", true);
-					try { req.send(null); } catch (e) {}
+				    try { req.send(null); } catch (e) {}
 				})(datasetName, tileName, settings.url + "data/");
 			}
 		}
@@ -198,7 +209,10 @@ function loadOverpass()
 		if (req.readyState != 4)
 			return;
 		if (req.status != 200)
-			return;
+		    return;
+	        var response = req.responseText
+	        if (response == '')
+		    return;
 		var osmData = JSON.parse(req.responseText).elements;
 		compareData(queriedDatasets, osmData);
 		queryStatus.busy = false;
