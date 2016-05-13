@@ -1,5 +1,11 @@
 # POI-Importer.github.io
-Tool to import POI into the OSM database
+Tool to import POI into the OSM database.
+
+See it live at:
+https://poi-importer.github.io
+
+More info on the OSM wiki:
+https://wiki.openstreetmap.org/wiki/POI_Importer
 
 ## Contributing to the project
 
