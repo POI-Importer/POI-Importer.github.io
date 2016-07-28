@@ -1,7 +1,7 @@
 // vim: tabstop=4:softtabstop=4:shiftwidth=4:noexpandtab
 
 // GLOBAL VARIABLES
-var overpassApi = "http://overpass-api.de/api/interpreter?data=";
+var overpassApi = "https://overpass-api.de/api/interpreter?data=";
 
 var datasetSettings = {};
 var tiledData = {};
