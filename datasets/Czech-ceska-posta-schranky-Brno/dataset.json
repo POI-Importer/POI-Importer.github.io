@@ -1,0 +1,12 @@
+{
+    "zoom": 12,
+    "query":"[amenity=post_box]",
+    "icon": "post",
+    "dist":100,
+    "types": ["node"],
+    "tagmatch":
+    [
+    {"key":"amenity", "algorithm":"equality"},
+    {"key":"operator", "algorithm":"equality"}
+    ]
+}

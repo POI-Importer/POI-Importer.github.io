@@ -12,27 +12,32 @@
  * Relative URLs make testing on a local server easier.
  */
 var datasets = {
-	"Belgium":
-	{
-		"BEdl":
-		{
-			"url": "datasets/belgium-haltes-de-lijn/", 
-			"name": "Haltes De Lijn",
-		},
-	},
-	"Italy": {
-		"ITfuel":
-		{
-			"url": "datasets/Italia-stazioni-di-servizo/",
-			"name": "Stazioni di servizo",
-		}
-	},
-	"Norway" :
-	{
-		"NOkg":
-		{
-			"url": "datasets/norge-barnehagefakta/",
-			"name": "Barnehagefakta",
-		}
-	}
+  "České" :
+  {
+    "CZCSbnk":
+    {
+      "url": "datasets/Czech-ceska-sporitelna/",
+      "name": "Pobočky České spořitelny"
+    },
+    "CZCSatm":
+    {
+      "url": "datasets/Czech-ceska-sporitelna-atm/",
+      "name": "Bankomaty České spořitelny"
+    },
+    "CZEuroOil":
+    {
+      "url": "datasets/Czech-Cepro-EuroOil/",
+      "name": "ČS EuroOil"
+    },
+    "CZECPbox":
+    {
+      "url": "datasets/Czech-ceska-posta-schranky/",
+      "name": "Poštovní schránky"
+    },
+    "CZECPboxBrno":
+    {
+      "url": "datasets/Czech-ceska-posta-schranky-Brno/",
+      "name": "Poštovní schránky Brno"
+    }
+  }
 };

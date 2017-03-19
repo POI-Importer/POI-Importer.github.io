@@ -1,0 +1,16 @@
+{
+    "zoom": 12,
+    "query":"[amenity=atm]",
+    "icon": "marker",
+    "dist":100,
+    "types": ["node", "way"],
+    "tagmatch":
+    [
+    {"key":"name", "algorithm":"equality"},
+    {"key":"amenity", "algorithm":"equality"},
+    {"key":"contact:website", "algorithm":"equality"},
+    {"key":"operator", "algorithm":"equality"},
+    {"key":"brand", "algorithm":"equality"},
+    {"key":"opening_hours", "algorithm":"equality"}
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "zoom": 11,
+    "query":"[amenity=bank]",
+    "icon": "bank",
+    "dist":200,
+    "types": ["node", "way"],
+    "tagmatch":
+    [
+    {"key":"name", "algorithm":"equality"},
+    {"key":"amenity", "algorithm":"equality"},
+    {"key":"contact:website", "algorithm":"equality"},
+    {"key":"operator", "algorithm":"equality"},
+    {"key":"bic", "algorithm":"equality"},
+    {"key":"brand", "algorithm":"equality"},
+    {"key":"opening_hours", "algorithm":"equality"},
+    {"key":"atm", "algorithm":"equality"}
+    ]
+}
