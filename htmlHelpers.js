@@ -38,8 +38,8 @@ var htmlHelper = (function()
 			"&bottom="        + (point.coordinates.lat - 0.001);
 		var popupHtml = "<table style='border-collapse:collapse'>" +
 			"<tr>" +
-			"<th colspan='3'><a onclick='josmHelper.importPoint(\""+datasetName+"\",\""+tileName+"\",\""+idx+"\")' title='Otevřít bod v JOSM'>Importovaná data</a></th>" +
-			"<th colspan='3'><a onclick='josmHelper.openOsmArea(\""+area+"\")' title='Otevřít oblast v JOSM'>OSM data</a></th>" +
+			"<th colspan='3'>Importovaná data (<a onclick='josmHelper.importPoint(\""+datasetName+"\",\""+tileName+"\",\""+idx+"\")' title='Otevřít bod v JOSM'>JOSM</a>)</th>" +
+			"<th colspan='3'>OSM data (<a onclick='josmHelper.openOsmArea(\""+area+"\")' title='Otevřít oblast v JOSM'>JOSM</a>)</th>" +
 			"</tr>";
 
 		for (var t = 0; t < settings.tagmatch.length; t++)
@@ -65,8 +65,16 @@ var htmlHelper = (function()
 			popupHtml += "</td></tr>";
 
 		}
+
+		popupHtml += "<tr><td colspan='3' style='text-align: right'> " + point.coordinates.lat.toFixed(6) + ', ' + point.coordinates.lon.toFixed(6) + "</td>";
+		if (point.osmElement.lat) {
+			popupHtml += "<td colspan='3' style='text-align: right'> " + point.osmElement.lat.toFixed(6) + ', ' + point.osmElement.lon.toFixed(6) + "</td></tr>";
+		} else {
+			popupHtml += "<td colspan='3' style='text-align: right'>N/A</td></tr>";
+		}
+
 		if (point.properties["_note"])
-      popupHtml += "<tr><td colspan=\"4\"><b>Poznámka:</b> " + point.properties["_note"] + "</td></tr>";
+			popupHtml += "<tr><td colspan='6'>" + point.properties["_note"] + "</td></tr>";
 		popupHtml += "</table>";
 		return popupHtml;
 	};
