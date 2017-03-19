@@ -37,9 +37,9 @@ var htmlHelper = (function()
 			"&top="           + (point.coordinates.lat + 0.001) +
 			"&bottom="        + (point.coordinates.lat - 0.001);
 		var popupHtml = "<table style='border-collapse:collapse'>" +
-			"<tr>" + 
-			"<th colspan='3'><a onclick='josmHelper.importPoint(\""+datasetName+"\",\""+tileName+"\",\""+idx+"\")' title='Import point in JOSM'>Import Data</a></th>" +
-			"<th colspan='3'><a onclick='josmHelper.openOsmArea(\""+area+"\")' title='Open area in JOSM'>OSM Data</a></th>" +
+			"<tr>" +
+			"<th colspan='3'><a onclick='josmHelper.importPoint(\""+datasetName+"\",\""+tileName+"\",\""+idx+"\")' title='Otevřít bod v JOSM'>Importovaná data</a></th>" +
+			"<th colspan='3'><a onclick='josmHelper.openOsmArea(\""+area+"\")' title='Otevřít oblast v JOSM'>OSM data</a></th>" +
 			"</tr>";
 
 		for (var t = 0; t < settings.tagmatch.length; t++)
@@ -63,7 +63,10 @@ var htmlHelper = (function()
 				popupHtml += "N/A";
 
 			popupHtml += "</td></tr>";
+
 		}
+		if (point.properties["_note"])
+      popupHtml += "<tr><td colspan=\"4\"><b>Poznámka:</b> " + point.properties["_note"] + "</td></tr>";
 		popupHtml += "</table>";
 		return popupHtml;
 	};
@@ -96,7 +99,7 @@ var htmlHelper = (function()
 
 	var clearComments = function()
 	{
-		document.getElementById("commentsContent").innerHTML = "Select a feature to see comments.";
+		document.getElementById("commentsContent").innerHTML = "Vyberte vlastnost pro zobrazení komentářů.";
 		document.getElementById("newComment").style.display = "none";
 	};
 

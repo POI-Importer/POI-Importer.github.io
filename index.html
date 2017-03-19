@@ -1,4 +1,4 @@
-<!-- 
+<!--
 	vim: tabstop=2:softtabstop=2:shiftwidth=2:noexpandtab
 -->
 <html>
@@ -52,6 +52,11 @@
 				border-style: solid;
 				border-color: #FFF;
 			}
+			body
+			{
+        background-color: #EEE;
+        color: #555;
+			}
 /*
 			TODO use this for warning users there are comments
 			@keyframes warning
@@ -59,7 +64,7 @@
 				0% {background-color:#CCC;}
 				100% {background-color:#F60;}
 			}
- 
+
 			@keyframes still
 			{
 				0% {background-color: #CCC;}
@@ -80,29 +85,29 @@
 
 	<div id="leftPane">
 		<div class="settingsHeader" onclick="htmlHelper.collapseSection('settings')">
-			&nbsp;Settings <div class="collapser" id="settingsCollapser"></div>
+			&nbsp;Nastavení <div class="collapser" id="settingsCollapser"></div>
 		</div>
 		<div id="settingsSection" class="settingsPane">
 			<input type="checkbox" onchange="changeSetting(this)" id="hideCompletePOISetting"/>
-			<label for="hideCompletePOISetting"> Hide complete POI</label><br/>
+			<label for="hideCompletePOISetting"> Skrýt kompletní POI</label><br/>
 		</div>
 
 		<div class="settingsHeader" onclick="htmlHelper.collapseSection('dataset')">
-			&nbsp;Datasets <div class="collapser" id="datasetCollapser"></div>
+			&nbsp;Datové sady <div class="collapser" id="datasetCollapser"></div>
 		</div>
 		<div id="datasetSection" class="settingsPane"></div>
 
 		<div class="settingsHeader" onclick="htmlHelper.collapseSection('comments')" id="commentsHeader">
-			&nbsp;Comments (experimental)<div class="collapser" id="commentsCollapser"></div>
+			&nbsp;Komentáře (experimentální)<div class="collapser" id="commentsCollapser"></div>
 		</div>
 		<div id="commentsSection" class="settingsPane">
-			<div id="commentsContent">Select a feature to see comments.</div>
+			<div id="commentsContent">Vyberte vlastnost pro zobrazení komentářů.</div>
 			<div id="newComment" style="display:none;">
 				<textarea id="newCommentText" name="newComment" rows="5" style="width:100%;"></textarea>
-				<input type="button" id="newCommentButton" value="Add comment"></input>
+				<input type="button" id="newCommentButton" value="Přidat komentář"></input>
 			</div>
 			<div id="osmLogin">
-				<input type="button" id="osmLoginButton" value="Login to OSM to add a comment"></input>
+				<input type="button" id="osmLoginButton" value="Před přidáním komentáře se nejprve přihlaste do OSM"></input>
 			</div>
 		</div>
 
@@ -128,11 +133,11 @@
 		mapObj.setZoom(3);
 		mapObj.on("zoomend", loadData);
 		mapObj.on("moveend", loadData);
-		L.tileLayer("https://api.mapbox.com/styles/v1/obtitus/cir6c5h440011cnlxo0eqqxby/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoib2J0aXR1cyIsImEiOiJjaWYzbXF1M3IwMGtuc3ZsdmhhYXR4d2hpIn0.tQQLwWt3e_NhGtTdUYLzwQ", {
-			subdomains: "1234",
-			attribution: '&copy; <a href="https://mapbox.com">Mapbox</a> &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> &copy; <a href="https://digitalglobe.com">DigitalGlobe</a>',
-			maxZoom: 18
-		}).addTo(mapObj);
+    L.tileLayer("http://b.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      subdomains: "1234",
+      attribution: 'Mapová data &copy; přispěvatelé <a href="http://openstreetmap.org">OpenStreetMap</a>',
+      maxZoom: 19
+    }).addTo(mapObj);
 		new L.Control.Zoom({ position: 'topright' }).addTo(mapObj);
 		loadAppState(mapObj);
 		htmlHelper.collapseSection("settings");

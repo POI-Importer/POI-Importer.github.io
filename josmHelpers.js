@@ -67,7 +67,7 @@ var josmHelper = (function()
 	};
 
 	var testJosmVersion = function() {
-		var defaultAlert = "Please make sure JOSM is running and the remoteControl plugin is enabled";
+		var defaultAlert = "Ujistěte se prosím, že JOSM běží a je povoleno dálkové ovládání.";
 		var req = new XMLHttpRequest();
 		req.onreadystatechange = function()
 		{
@@ -80,7 +80,7 @@ var josmHelper = (function()
 			{
 				var version = JSON.parse(req.responseText).protocolversion;
 				if (version.minor < 6)
-					alert("Your JOSM installation does not yet support load_data requests. Please update JOSM to version 7643 or newer");
+					alert("Vaše instalace JOSM nepodporuje požadavek load_data. Prosím, aktualizujte JOSM na verzi 7643 nebo novější");
 			}
 		}
 		req.open("GET", josmUrl + "version", true);
