@@ -5,11 +5,11 @@ function compareData(tiles, osmData)
 	for (var d = 0; d < tiles.length; d++)
 	{
 		tiles[d].osmData = [];
-		while (!osmData[++i].count)
+		while (osmData[++i].type != 'count')
 			tiles[d].osmData.push(osmData[i]);
 	}
 
-	
+
 	for (var d = 0; d < tiles.length; d++)
 	{
 		var data = tiledData[tiles[d].datasetName][tiles[d].tileName].data;
@@ -61,7 +61,7 @@ var comparisonAlgorithms = {
 			return 1;
 		if (v1 == v2)
 			return 1;
-		return 0;	
+		return 0;
 	},
 	/**
 	 * Checks if all elements of the semicolumn separated list v1 are in v2
