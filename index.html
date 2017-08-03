@@ -133,11 +133,11 @@
 		mapObj.setZoom(3);
 		mapObj.on("zoomend", loadData);
 		mapObj.on("moveend", loadData);
-    L.tileLayer("http://b.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      subdomains: "1234",
-      attribution: 'Mapová data &copy; přispěvatelé <a href="http://openstreetmap.org">OpenStreetMap</a>',
-      maxZoom: 19
-    }).addTo(mapObj);
+	L.tileLayer("http://b.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+		subdomains: "1234",
+		attribution: 'Mapová data &copy; přispěvatelé <a href="http://openstreetmap.org">OpenStreetMap</a>',
+		maxZoom: 19
+	}).addTo(mapObj);
 		new L.Control.Zoom({ position: 'topright' }).addTo(mapObj);
 		loadAppState(mapObj);
 		htmlHelper.collapseSection("settings");

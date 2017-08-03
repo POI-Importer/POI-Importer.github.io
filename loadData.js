@@ -127,7 +127,7 @@ function loadData()
 					        var response = req.responseText
 					        if (response == '')
 						    return;
-					    
+
 						var data = geojsonToPointlist(JSON.parse(response));
 						tiledData[datasetName][tileName].data = data;
 						for (var p = 0; p < data.length; p++)
@@ -221,7 +221,7 @@ function loadOverpass()
 	}
 	queryStatus.busy = true;
 	req.open("GET", overpassApi + encodeURIComponent(query), true);
-	req.send(null);	
+	req.send(null);
 }
 
 function displayPoint(datasetName, tileName, idx)
@@ -249,7 +249,7 @@ function displayPoint(datasetName, tileName, idx)
 		point.marker.setOpacity(1);
 
 	point.marker.setIcon(settings.icons[Math.floor(10 * point.score/point.maxScore)]);
-	point.marker.bindPopup(htmlHelper.getPopup(datasetName, tileName, idx), {"maxWidth": 900});
+	point.marker.bindPopup(htmlHelper.getPopup(datasetName, tileName, idx), {"minWidth": 340, "maxWidth": 900});
 }
 
 function loadIcons(settings)
@@ -410,7 +410,7 @@ function applyStateString(state)
 		}
 		else if (splitState[i].indexOf("datasets=") == 0)
 		{
-			var loadedDatasets = splitState[i].substr(9).split(";"); 
+			var loadedDatasets = splitState[i].substr(9).split(";");
 			for (var d = 0; d < loadedDatasets.length; d++)
 			{
 				var id = decodeURIComponent(loadedDatasets[d])
