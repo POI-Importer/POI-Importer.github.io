@@ -8,6 +8,7 @@
     [
     {"key":"amenity", "algorithm":"equality"},
     {"key":"operator", "algorithm":"equality"},
+    {"key":"ref", "algorithm":"equality"},
     {"key":"collection_times", "algorithm":"equality"}
     ]
 }
