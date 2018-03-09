@@ -66,6 +66,16 @@ var htmlHelper = (function()
 
 		}
 
+		// Show fixme=* tag if exists
+		if (point.osmElement && point.osmElement.tags && point.osmElement.tags['fixme']) {
+			popupHtml += "<tr style='background-color: #ff9999;'><td>";
+			popupHtml += "<b></b></td><td></td><td>";
+			popupHtml += "</td><td>";
+			popupHtml += "<b>fixme</b></td><td> = </td><td>";
+			popupHtml += point.osmElement.tags['fixme'];
+			popupHtml += "</td></tr>";
+		}
+
 		popupHtml += "<tr><td colspan='3' style='text-align: right'> " + point.coordinates.lat.toFixed(6) + ', ' + point.coordinates.lon.toFixed(6) + "</td>";
 		if (point.osmElement.lat) {
 			popupHtml += "<td colspan='3' style='text-align: right'> " + point.osmElement.lat.toFixed(6) + ', ' + point.osmElement.lon.toFixed(6) + "</td></tr>";

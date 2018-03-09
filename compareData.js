@@ -46,6 +46,11 @@ function compareData(tiles, osmData)
 					bestScore = score;
 				}
 			}
+
+			// Add penalty if tag fixme=* exists
+			if (point.osmElement && point.osmElement.tags && point.osmElement.tags['fixme']) {
+				point.maxScore += Math.ceil(point.maxScore / 2);
+			}
 			displayPoint(tiles[d].datasetName, tiles[d].tileName, p);
 		}
 	}
