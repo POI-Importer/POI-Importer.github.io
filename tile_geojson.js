@@ -1,16 +1,19 @@
 var fs = require('graceful-fs');
 var mkdir = require('mkdirp');
 var rmdir = require('rimraf');
-var commandLineArgs = require("command-line-args");
+// var commandLineArgs = require("command-line-args");
  
-var cli = commandLineArgs([
-    { name: "dataset", alias: "d", type: String },
-    { name: "reponame", alias: "r", type: String },
-]);
+// var cli = commandLineArgs([
+//     { name: "dataset", alias: "d", type: String },
+//     { name: "reponame", alias: "r", type: String },
+// ]);
 
-var options = cli.parse();
-var repo = options.reponame;
-var data = options.dataset;
+// var options = cli.parse();
+// var repo = options.reponame;
+// var data = options.dataset;
+var myArgs = process.argv.slice(2);
+var repo = myArgs[1];
+var data = myArgs[0];
 
 if (!repo)
 {
