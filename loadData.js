@@ -405,7 +405,7 @@ function applyStateString(state)
 	{
 		if (splitState[i].indexOf("map=") == 0)
 		{
-			var mapState = splitState[i].match(/[0-9\.]+/g);
+			var mapState = splitState[i].match(/-?[0-9\.]+/g);
 			mapObj.setView([+mapState[1], +mapState[2]], +mapState[0]);
 		}
 		else if (splitState[i].indexOf("datasets=") == 0)
