@@ -26,7 +26,7 @@ function loadDatasets()
 					if (req.readyState != 4)
 					    return;
 				        var response = req.responseText
-				        if (response == '')
+				        if (req.status == 404 || response == '')
 					    return;
 					var settings = JSON.parse(response);
 					settings.url = datasets[country][dataset].url;
@@ -125,7 +125,7 @@ function loadData()
 						if (req.readyState != 4)
 						    return;
 					        var response = req.responseText
-					        if (response == '')
+					        if (req.status == 404 || response == '')
 						    return;
 
 						var data = geojsonToPointlist(JSON.parse(response));
@@ -211,7 +211,7 @@ function loadOverpass()
 		if (req.status != 200)
 		    return;
 	        var response = req.responseText
-	        if (response == '')
+	        if (req.status == 404 || response == '')
 		    return;
 		var osmData = JSON.parse(req.responseText).elements;
 		compareData(queriedDatasets, osmData);
