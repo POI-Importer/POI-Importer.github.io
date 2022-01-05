@@ -38,6 +38,16 @@ var datasets = {
     {
       "url": "datasets/Czech-ceska-posta-schranky-Brno/",
       "name": "Poštovní schránky Brno"
+    },
+    "CZEEKO-KOM":
+    {
+      "url": "datasets/Czech-EKO-KOM-kontejnery/",
+      "name": "EKO-KOM: kontejnery"
+    },
+    "CZEzBoxy":
+    {
+      "url": "datasets/Czech-Zasilkovna-Z-BOXy/",
+      "name": "Zásilkovna - Z-Boxy"
     }
   }
 };
