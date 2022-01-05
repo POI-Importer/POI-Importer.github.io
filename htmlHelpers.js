@@ -1,6 +1,6 @@
 var htmlHelper = (function()
 {
-	var wikiUrl = "http://wiki.openstreetmap.org/wiki/";
+	var wikiUrl = "https://wiki.openstreetmap.org/wiki/";
 
 	var addDataset = function (country, id)
 	{
