@@ -54,11 +54,20 @@ var htmlHelper = (function()
 					point.osmElement.tags[tag.key]) * (tag.importance || 1);
 			var colour = hslToRgb(score / 3, 1, 0.8);
 			popupHtml += "<tr style='background-color:" + colour + ";'><td>";
-			popupHtml += "<b>" + tag.key + "</b></td><td> = </td><td> " + point.properties[tag.key];
+			popupHtml += "<b>" + tag.key + "</b></td><td> = </td><td> ";
+                        if (tag.key === 'website') {
+                            popupHtml += '<a href="'+ point.properties[tag.key] +'">'+ point.properties[tag.key] +'</a>';
+                        } else {
+                            popupHtml += point.properties[tag.key];
+                        }
 			popupHtml += "</td><td>";
 			popupHtml += "<b>" + tag.key + "</b></td><td> = </td><td>";
 			if (point.osmElement && point.osmElement.tags && point.osmElement.tags[tag.key])
-				popupHtml += point.osmElement.tags[tag.key];
+                        if (tag.key === 'website') {
+                            popupHtml += '<a href="'+ point.osmElement.tags[tag.key] +'">'+ point.osmElement.tags[tag.key] +'</a>';
+                        } else {
+                            popupHtml +=point.osmElement.tags[tag.key];
+                        }
 			else
 				popupHtml += "N/A";
 
