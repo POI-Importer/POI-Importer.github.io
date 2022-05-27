@@ -38,8 +38,8 @@ var htmlHelper = (function()
 			"&bottom="        + (point.coordinates.lat - 0.001);
 		var popupHtml = "<table style='border-collapse:collapse'>" +
 			"<tr>" +
-			"<th colspan='3'>Importovaná data (<a onclick='josmHelper.importPoint(\""+datasetName+"\",\""+tileName+"\",\""+idx+"\")' title='Otevřít bod v JOSM'>JOSM</a>)</th>" +
-			"<th colspan='3'>OSM data (<a onclick='josmHelper.openOsmArea(\""+area+"\")' title='Otevřít oblast v JOSM'>JOSM</a>)</th>" +
+			"<th colspan='3'><a onclick='josmHelper.importPoint(\""+datasetName+"\",\""+tileName+"\",\""+idx+"\")' title='Import point in JOSM'>Import Data</a></th>" +
+			"<th colspan='3'><a onclick='josmHelper.openOsmArea(\""+area+"\")' title='Open area in JOSM'>OSM Data</a></th>" +
 			"</tr>";
 
 		for (var t = 0; t < settings.tagmatch.length; t++)
@@ -126,7 +126,7 @@ var htmlHelper = (function()
 
 	var clearComments = function()
 	{
-		document.getElementById("commentsContent").innerHTML = "Vyberte vlastnost pro zobrazení komentářů.";
+		document.getElementById("commentsContent").innerHTML = "Select a feature to see comments.";
 		document.getElementById("newComment").style.display = "none";
 	};
 
