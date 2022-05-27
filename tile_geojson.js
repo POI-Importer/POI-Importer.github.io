@@ -3,12 +3,11 @@ var mkdir = require('mkdirp');
 var rmdir = require('rimraf');
 var commandLineArgs = require("command-line-args");
  
-var cli = commandLineArgs([
+var options = commandLineArgs([
     { name: "dataset", alias: "d", type: String },
     { name: "reponame", alias: "r", type: String },
 ]);
 
-var options = cli.parse();
 var repo = options.reponame;
 var data = options.dataset;
 
