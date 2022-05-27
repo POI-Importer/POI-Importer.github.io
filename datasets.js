@@ -12,27 +12,27 @@
  * Relative URLs make testing on a local server easier.
  */
 var datasets = {
-       "Belgium":
-       {
-               "BEdl":
-               {
-                       "url": "datasets/belgium-haltes-de-lijn/",
-                       "name": "Haltes De Lijn",
-               },
-       },
-       "Italy": {
-               "ITfuel":
-               {
-                       "url": "datasets/Italia-stazioni-di-servizo/",
-                       "name": "Stazioni di servizo",
-               }
-       },
-       "Norway" :
-       {
-               "NOkg":
-               {
-                       "url": "datasets/norge-barnehagefakta/",
-                       "name": "Barnehagefakta",
-               }
-       }
+	"Belgium":
+	{
+		"BEdl":
+		{
+			"url": "datasets/belgium-haltes-de-lijn/", 
+			"name": "Haltes De Lijn",
+		},
+	},
+	"Italy": {
+		"ITfuel":
+		{
+			"url": "datasets/Italia-stazioni-di-servizo/",
+			"name": "Stazioni di servizo",
+		}
+	},
+	"Norway" :
+	{
+		"NOkg":
+		{
+			"url": "datasets/norge-barnehagefakta/",
+			"name": "Barnehagefakta",
+		}
+	}
 };
