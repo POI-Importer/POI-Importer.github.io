@@ -22,7 +22,8 @@ var htmlHelper = (function()
 		var innerHTML = section.innerHTML;
 		innerHTML += '&nbsp;&nbsp;' +
 			'<input type="checkbox" id="' + id + 'Dataset" onchange="toggleDataset(\'' + id + '\',this)" /> ' +
-			'<label for="' + id + 'Dataset">' + displayname + '</label> ' +
+			'<label for="' + id + 'Dataset">' + displayname + '</label>, ' +
+			'<small id="'+id+'Update"></small>, ' +
 			'<small><a title="OpenStreetMap wiki" href="' + wikiUrl + 'POI_Importer/Datasets/' + country + '/' + displayname + '">info</a></small>' +
 			'<br/>';
 		section.innerHTML = innerHTML;

@@ -47,6 +47,34 @@ function loadDatasets()
 					console.log(e);
 				}
 			})(country, dataset);
+
+			//load last updated date+time
+			(function (country, dataset)
+			{
+				var req = new XMLHttpRequest();
+				req.overrideMimeType("application/json");
+				req.onreadystatechange = function()
+				{
+					if (req.readyState != 4)
+					    return;
+				        var response = req.responseText
+				        if (req.status == 404 || response == '')
+					    return;
+					var settings = JSON.parse(response);
+					var up = document.getElementById(dataset + "Update");
+					up.innerHTML = settings.updated;
+				}
+				req.open("GET", datasets[country][dataset].url + "updated.json", true);
+				try
+				{
+					req.send(null);
+				}
+				catch (e)
+				{
+					console.log(datasets[country][dataset].url);
+					console.log(e);
+				}
+			})(country, dataset);
 		}
 	}
 }
